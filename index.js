@@ -648,3 +648,99 @@ const getDigits1 = (string) => {
 };
 
 console.log(getDigits1("0s1a3y5w7h9a2t4?6!8?0"));
+
+// Create a function that, given a string, returns the string’s acronym (first letters only, capitalized). Given " there's no free lunch  -  gotta pay yer way. ", return "TNFL-GPYW". Given "Live from New York, it's Saturday Night!", return "LFNYISN".
+
+const firstLetterCapitalize = (string) => {
+    const arr = string.trim().split(" ");
+    let result = "";
+
+    for (const ele of arr) {
+        result += ele[0].toUpperCase();
+    }
+
+    return result;
+};
+
+console.log(firstLetterCapitalize("Live from New York, it's Saturday Night!"));
+console.log(
+    firstLetterCapitalize(" there's no free lunch - gotta pay yer way. ")
+);
+
+// Count Non-Spaces Accept a string and return the number of non-space characters found in the string. For example, given "Honey pie, you are driving me crazy", return 29 (not 35).
+
+const returnLength = (string) => {
+    return string.split(" ").join("").length;
+};
+
+console.log(returnLength("Honey pie, you are driving me crazy"));
+
+// Given a string array and value(length), remove any strings shorter than the given length.
+// ["abc", "defg", "a", "xy", "hello", "bye", "javascript"], 3
+
+const checkLength = (array, length) => {
+    return array.filter((string) => string.length > length);
+};
+
+console.log(
+    checkLength(["abc", "defg", "a", "xy", "hello", "bye", "javascript"], 3)
+);
+
+const checkLength2 = (array, length) => {
+    const newArr = [];
+
+    for (const char of array) {
+        if (char.length > length) {
+            newArr.push(char);
+        }
+    }
+    return newArr;
+};
+
+console.log(
+    checkLength2(["abc", "defg", "a", "xy", "hello", "bye", "javascript"], 3)
+);
+
+// Integer to Roman Numerals Given a positive integer that is less than 4000, return a string containing that value in Roman numeral representation. In this representation, I is 1, V is 5, X is 10, L = 50, C = 100, D = 500, and M = 1000. Remember that 4 is IV, 349 is CCCIL and 444 is CDXLIV.
+
+function intToRoman(num) {
+    if (num < 1 || num >= 4000) {
+        return "Invalid input";
+    }
+
+    const romanNumerals = [
+        "M",
+        "CM",
+        "D",
+        "CD",
+        "C",
+        "XC",
+        "L",
+        "XL",
+        "X",
+        "IX",
+        "V",
+        "IV",
+        "I"
+    ];
+
+    const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+
+    let result = "";
+
+    for (let i = 0; i < romanNumerals.length; i++) {
+        while (num >= values[i]) {
+            result += romanNumerals[i];
+            num -= values[i];
+        }
+    }
+
+    return result;
+}
+
+// fix aa typo
+
+// Test cases
+console.log(intToRoman(4)); // Output: "IV"
+console.log(intToRoman(349)); // Output: "CCCIL"
+console.log(intToRoman(444)); // Output: "CDXLIV"
